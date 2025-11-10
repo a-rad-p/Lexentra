@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { 
   File, MoreVertical, Star, Share2, Download, Trash2, 
-  Eye, Edit, Tag as TagIcon, Clock, User 
+  Eye, Edit, Tag as TagIcon, Clock, User, FileText, Image as ImageIcon
 } from 'lucide-react';
 import { format } from 'date-fns';
 import type { Document } from '../types';
@@ -30,12 +30,79 @@ export const DocumentCard = ({
     setShowMenu(!showMenu);
   };
 
+  // Render thumbnail preview for supported file types
+  const renderThumbnail = () => {
+    if (!document.url && !document.content) {
+      return null;
+    }
+
+    const fileUrl = document.url || document.content;
+    const fileType = document.type.toLowerCase();
+
+    // Image preview
+    if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'].includes(fileType)) {
+      return (
+        <div className="card-thumbnail">
+          <img src={fileUrl} alt={document.name} />
+        </div>
+      );
+    }
+
+    // PDF preview icon
+    if (fileType === 'pdf') {
+      return (
+        <div className="card-thumbnail pdf-thumb">
+          <FileText size={48} />
+          <span>PDF</span>
+        </div>
+      );
+    }
+
+    // Text file preview
+    if (['txt', 'md', 'json', 'csv', 'xml', 'html', 'css', 'js', 'ts'].includes(fileType)) {
+      return (
+        <div className="card-thumbnail text-thumb">
+          <FileText size={48} />
+          <span>{fileType.toUpperCase()}</span>
+        </div>
+      );
+    }
+
+    // Video preview
+    if (['mp4', 'webm', 'ogg', 'mov'].includes(fileType)) {
+      return (
+        <div className="card-thumbnail video-thumb">
+          <video src={fileUrl} />
+          <div className="video-overlay">▶</div>
+        </div>
+      );
+    }
+
+    // Audio preview
+    if (['mp3', 'wav', 'ogg', 'm4a'].includes(fileType)) {
+      return (
+        <div className="card-thumbnail audio-thumb">
+          <ImageIcon size={48} />
+          <span>AUDIO</span>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const hasThumbnail = document.url || document.content;
+
   return (
     <div className="document-card" onClick={() => onPreview(document)}>
       <div className="card-header">
-        <div className="file-icon" style={{ backgroundColor: `${getFileTypeColor(document.type)}20` }}>
-          <span style={{ fontSize: '2rem' }}>{getFileIcon(document.type)}</span>
-        </div>
+        {hasThumbnail ? (
+          renderThumbnail()
+        ) : (
+          <div className="file-icon" style={{ backgroundColor: `${getFileTypeColor(document.type)}20` }}>
+            <span style={{ fontSize: '2rem' }}>{getFileIcon(document.type)}</span>
+          </div>
+        )}
         <div className="card-actions">
           <button
             className={`favorite-btn ${document.isFavorite ? 'active' : ''}`}

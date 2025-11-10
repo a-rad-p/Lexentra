@@ -164,3 +164,41 @@ export const truncateText = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength) + '...';
 };
+
+// Convert file to base64 for storage
+export const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+// Check if file type supports preview
+export const canPreviewFile = (type: string): boolean => {
+  const previewableTypes = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'txt', 'md', 'json', 'csv'];
+  return previewableTypes.includes(type.toLowerCase());
+};
+
+// Get MIME type from file extension
+export const getMimeType = (extension: string): string => {
+  const mimeTypes: Record<string, string> = {
+    pdf: 'application/pdf',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    gif: 'image/gif',
+    txt: 'text/plain',
+    md: 'text/markdown',
+    json: 'application/json',
+    csv: 'text/csv',
+    doc: 'application/msword',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    xls: 'application/vnd.ms-excel',
+    xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    ppt: 'application/vnd.ms-powerpoint',
+    pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  };
+  return mimeTypes[extension.toLowerCase()] || 'application/octet-stream';
+};

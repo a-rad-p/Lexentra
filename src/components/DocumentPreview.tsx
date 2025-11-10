@@ -19,6 +19,102 @@ export const DocumentPreview = ({
   onShare,
   onDelete,
 }: DocumentPreviewProps) => {
+  const handleDownload = () => {
+    if (document.url || document.content) {
+      const link = window.document.createElement('a');
+      link.href = document.url || document.content || '';
+      link.download = document.name;
+      window.document.body.appendChild(link);
+      link.click();
+      window.document.body.removeChild(link);
+    }
+  };
+
+  const renderPreview = () => {
+    // If no content stored, show placeholder
+    if (!document.content && !document.url) {
+      return (
+        <div className="file-preview-placeholder">
+          <span style={{ fontSize: '6rem' }}>{getFileIcon(document.type)}</span>
+          <h3>No preview available</h3>
+          <p>This is a demo document. Upload a real file to see preview.</p>
+        </div>
+      );
+    }
+
+    const fileUrl = document.url || document.content;
+    const fileType = document.type.toLowerCase();
+
+    // Image files
+    if (fileType.match(/jpg|jpeg|png|gif|bmp|webp/)) {
+      return (
+        <div className="image-preview">
+          <img src={fileUrl} alt={document.name} className="preview-image" />
+        </div>
+      );
+    }
+
+    // PDF files
+    if (fileType === 'pdf') {
+      return (
+        <div className="pdf-preview">
+          <iframe
+            src={fileUrl}
+            title={document.name}
+            className="pdf-iframe"
+          />
+        </div>
+      );
+    }
+
+    // Text-based files
+    if (fileType.match(/txt|md|json|csv|xml|html|css|js|ts|tsx|jsx/)) {
+      return (
+        <div className="text-preview">
+          <iframe
+            src={fileUrl}
+            title={document.name}
+            className="text-iframe"
+          />
+        </div>
+      );
+    }
+
+    // Video files
+    if (fileType.match(/mp4|webm|ogg|mov/)) {
+      return (
+        <div className="video-preview">
+          <video controls className="preview-video" src={fileUrl}>
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      );
+    }
+
+    // Audio files
+    if (fileType.match(/mp3|wav|ogg|m4a/)) {
+      return (
+        <div className="audio-preview">
+          <audio controls className="preview-audio" src={fileUrl}>
+            Your browser does not support the audio tag.
+          </audio>
+        </div>
+      );
+    }
+
+    // Default: not previewable
+    return (
+      <div className="file-preview-placeholder">
+        <span style={{ fontSize: '6rem' }}>{getFileIcon(document.type)}</span>
+        <h3>Preview not available</h3>
+        <p>This file type doesn't support preview. Please download to view.</p>
+        <button className="btn-primary" onClick={handleDownload}>
+          <Download size={18} /> Download File
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content preview-modal" onClick={(e) => e.stopPropagation()}>
@@ -43,7 +139,7 @@ export const DocumentPreview = ({
             <button className="action-btn" onClick={() => onShare(document)} title="Share">
               <Share2 size={20} />
             </button>
-            <button className="action-btn" title="Download">
+            <button className="action-btn" onClick={handleDownload} title="Download">
               <Download size={20} />
             </button>
             <button className="action-btn" title="Edit">
@@ -61,27 +157,7 @@ export const DocumentPreview = ({
         <div className="preview-body">
           <div className="preview-content">
             <div className="preview-area">
-              {document.type === 'md' && document.content ? (
-                <div className="markdown-preview">
-                  <pre>{document.content}</pre>
-                </div>
-              ) : document.type.match(/jpg|jpeg|png|gif/) ? (
-                <div className="image-preview">
-                  <div className="placeholder-image">
-                    <span style={{ fontSize: '5rem' }}>{getFileIcon(document.type)}</span>
-                    <p>Image Preview</p>
-                  </div>
-                </div>
-              ) : (
-                <div className="file-preview-placeholder">
-                  <span style={{ fontSize: '6rem' }}>{getFileIcon(document.type)}</span>
-                  <h3>Preview not available</h3>
-                  <p>This file type doesn't support preview. Please download to view.</p>
-                  <button className="btn-primary">
-                    <Download size={18} /> Download File
-                  </button>
-                </div>
-              )}
+              {renderPreview()}
             </div>
           </div>
 

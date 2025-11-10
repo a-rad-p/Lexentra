@@ -7,7 +7,7 @@ import { ShareModal } from './components/ShareModal';
 import { UploadModal } from './components/UploadModal';
 import { FolderView } from './components/FolderView';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import { searchDocuments } from './utils/helpers';
+import { searchDocuments, fileToBase64 } from './utils/helpers';
 import type { Document, SearchFilters, AccessLevel } from './types';
 import './App.css';
 
@@ -63,9 +63,17 @@ function App() {
     }
   };
 
-  const handleUpload = (file: File, folderId: string | null, description: string, tagIds: string[]) => {
+  const handleUpload = async (file: File, folderId: string | null, description: string, tagIds: string[]) => {
     const selectedTags = tags.filter(tag => tagIds.includes(tag.id));
     const fileType = file.name.split('.').pop() || 'other';
+    
+    // Convert file to base64 for storage
+    let fileContent: string | undefined;
+    try {
+      fileContent = await fileToBase64(file);
+    } catch (error) {
+      console.error('Error converting file to base64:', error);
+    }
     
     addDocument({
       name: file.name,
@@ -76,6 +84,8 @@ function App() {
       description,
       sharedWith: [],
       isFavorite: false,
+      content: fileContent, // Store the base64 content
+      url: fileContent, // Also use as URL for preview
     });
     
     setShowUploadModal(false);
