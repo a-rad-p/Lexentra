@@ -28,219 +28,335 @@ A modern, intuitive, and feature-rich Document Management System built with Reac
 
 - Multiple sorting options (relevance, date, name, size)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### 📁 **Folder Hierarchies**
+If you are developing a production application, consider enabling type-aware ESLint rules and reviewing `eslint.config.js` to match your team's coding standards.
 
-- Organize documents in nested folder structures```js
+### 📁 Folder Hierarchies
 
-- Visual breadcrumb navigationexport default defineConfig([
+- Organize documents in nested folder structures
+- Visual breadcrumb navigation for easy traversal
+- Quick folder creation and management
+- Color-coded folders for better organization
 
-- Easy folder creation and management  globalIgnores(['dist']),
+### 🏷️ Smart Tagging System
 
-- Color-coded folders for better organization  {
-
-    files: ['**/*.{ts,tsx}'],
-
-### 🏷️ **Smart Tagging System**    extends: [
-
-- Create and assign multiple tags to documents      // Other configs...
-
+- Create and assign multiple tags to documents
 - Color-coded tags for quick identification
+- Filter and group documents by tags
 
-- Filter documents by tags      // Remove tseslint.configs.recommended and replace with this
+### 👥 Access Control & Sharing
 
-- Tag-based document categorization      tseslint.configs.recommendedTypeChecked,
+- Share documents with team members
+- Role-based access levels (Owner, Editor, Viewer)
+- Generate shareable links and manage permissions
 
-      // Alternatively, use this for stricter rules
+# Lexentra — Modern Document Management System
 
-### 👥 **Access Control & Sharing**      tseslint.configs.strictTypeChecked,
+![Lexentra](https://img.shields.io/badge/Lexentra-DMS-blue?style=for-the-badge)
 
-- Share documents with team members      // Optionally, add this for stylistic rules
+A modern, intuitive, and feature-rich Document Management System built with React, TypeScript, and Vite. Lexentra helps individuals and teams manage documents efficiently with AI-powered search, smart tagging, folder hierarchies, and access control.
 
-- Role-based access levels (Owner, Editor, Viewer)      tseslint.configs.stylisticTypeChecked,
+Badges
 
-- Track who has access to each document
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-purple.svg)](https://vitejs.dev/)
 
-- Generate shareable links      // Other configs...
+## ✨ Features
 
-    ],
+- 🔍 AI-powered search across document names, descriptions, and tags
+- 📁 Folder hierarchies with nested folders and breadcrumb navigation
+- �️ Smart tagging system with color-coded tags and tag-based filtering
+- 👥 Access control and sharing (Owner / Editor / Viewer roles)
+- 📄 In-app document preview for supported formats
+- 📊 Activity tracking (uploads, edits, shares, deletions)
+- ⭐ Favorites and quick access
+- 🎨 Modern, responsive UI/UX
+- 💾 Data persisted to browser `localStorage` (no backend required for demo)
 
-### 📄 **Document Preview**    languageOptions: {
+## 🚀 Getting Started
 
-- In-app document preview for supported formats      parserOptions: {
+Prerequisites
 
-- View document metadata and details        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+- Node.js 18+ and npm
+- A modern web browser
 
-- Quick access to document actions        tsconfigRootDir: import.meta.dirname,
+Installation
 
-- Version tracking      },
+1. Clone the repository:
 
-      // other options...
-
-### 📊 **Activity Tracking**    },
-
-- Real-time activity log  },
-
-- Track uploads, edits, shares, and deletions])
-
-- User attribution for all actions```
-
-
-
-### ⭐ **Favorites & Quick Access**You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-- Mark important documents as favorites
-
-- Quick access to frequently used documents```js
-
-- Shared documents view// eslint.config.js
-
-import reactX from 'eslint-plugin-react-x'
-
-### 🎨 **Modern UI/UX**import reactDom from 'eslint-plugin-react-dom'
-
-- Clean and intuitive interface
-
-- Responsive design for all devicesexport default defineConfig([
-
-- Dark-themed sidebar with gradient accents  globalIgnores(['dist']),
-
-- Smooth animations and transitions  {
-
-    files: ['**/*.{ts,tsx}'],
-
-### 💾 **Local Storage**    extends: [
-
-- All data persisted in browser localStorage      // Other configs...
-
-- No backend required      // Enable lint rules for React
-
-- Privacy-focused      reactX.configs['recommended-typescript'],
-
-      // Enable lint rules for React DOM
-
-## 🚀 Getting Started      reactDom.configs.recommended,
-
-    ],
-
-### Prerequisites    languageOptions: {
-
-      parserOptions: {
-
-- Node.js 18+ and npm        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-
-- Modern web browser        tsconfigRootDir: import.meta.dirname,
-
-      },
-
-### Installation      // other options...
-
-    },
-
-1. **Clone the repository**  },
-
-```bash])
-
-git clone https://github.com/yourusername/Lexentra.git```
-
+```powershell
+git clone https://github.com/yourusername/Lexentra.git
 cd Lexentra
 ```
 
-2. **Install dependencies**
-```bash
+2. Install dependencies:
+
+```powershell
 npm install
 ```
 
-3. **Start development server**
-```bash
+3. Start the development server:
+
+```powershell
 npm run dev
 ```
 
-4. **Open in browser**
-Navigate to `http://localhost:5173`
+4. Open in your browser:
 
-### Building for Production
+Navigate to `http://localhost:5173` (or the URL shown in the terminal).
+# Lexentra — Modern Document Management System
 
-```bash
+![Lexentra](https://img.shields.io/badge/Lexentra-DMS-blue?style=for-the-badge)
+
+A modern, intuitive, and feature-rich Document Management System built with React, TypeScript, and Vite. Lexentra helps individuals and teams manage documents efficiently with AI-powered search, smart tagging, folder hierarchies, and access control.
+
+Badges
+
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-purple.svg)](https://vitejs.dev/)
+
+## ✨ Features
+
+- 🔍 AI-powered search across document names, descriptions, and tags
+- 📁 Folder hierarchies with nested folders and breadcrumb navigation
+- 🏷️ Smart tagging system with color-coded tags and tag-based filtering
+- 👥 Access control and sharing (Owner / Editor / Viewer roles)
+- 📄 In-app document preview for supported formats
+- 📊 Activity tracking (uploads, edits, shares, deletions)
+- ⭐ Favorites and quick access
+- 🎨 Modern, responsive UI/UX
+- 💾 Data persisted to browser `localStorage` (no backend required for demo)
+
+## 🚀 Getting Started
+
+Prerequisites
+
+- Node.js 18+ and npm
+- A modern web browser
+
+Installation
+
+1. Clone the repository:
+
+```powershell
+git clone https://github.com/yourusername/Lexentra.git
+cd Lexentra
+```
+
+2. Install dependencies:
+
+```powershell
+npm install
+```
+
+3. Start the development server:
+
+```powershell
+npm run dev
+```
+
+4. Open in your browser:
+
+Navigate to `http://localhost:5173` (or the URL shown in the terminal).
+
+### Building for production
+
+```powershell
 npm run build
 ```
 
-### Preview Production Build
+### Preview production build
 
-```bash
+```powershell
 npm run preview
 ```
 
 ## 🌐 Deploy to GitHub Pages
 
-1. **Install gh-pages**
-```bash
+1. Install `gh-pages` (dev dependency):
+
+```powershell
 npm install --save-dev gh-pages
 ```
 
-2. **Add deploy script to `package.json`**
+2. Add a `deploy` script to `package.json` (example):
+
 ```json
 {
-  "scripts": {
-    "deploy": "npm run build && gh-pages -d dist"
-  }
+    "scripts": {
+        "deploy": "npm run build && gh-pages -d dist"
+    }
 }
 ```
 
-3. **Deploy**
-```bash
+3. Deploy:
+
+```powershell
 npm run deploy
 ```
 
-4. **Configure GitHub Pages**
-   - Go to repository settings → Pages
-   - Select `gh-pages` branch
-   - Your site will be live at `https://yourusername.github.io/Lexentra/`
+4. Configure GitHub Pages in repository Settings → Pages and choose the `gh-pages` branch.
+
+Your site will be available at `https://yourusername.github.io/Lexentra/`.
 
 ## 📚 Tech Stack
 
-- **Frontend**: React 18 + TypeScript 5
-- **Build Tool**: Vite 6
-- **Icons**: Lucide React
-- **Date Handling**: date-fns
-- **Storage**: Browser localStorage
+- Frontend: React 18 + TypeScript 5
+- Build tool: Vite 6
+- Icons: Lucide React
+- Date handling: date-fns
+- Storage: Browser `localStorage`
 
 ## 🎯 Key Components
 
-- `Sidebar` - Navigation and quick actions
-- `SearchBar` - Advanced search with filters
-- `DocumentCard` - Document display with actions
-- `DocumentPreview` - Full document preview modal
-- `ShareModal` - Document sharing interface
-- `UploadModal` - Drag-and-drop file upload
-- `FolderView` - Folder navigation and display
+- `Sidebar` — Navigation and quick actions
+- `SearchBar` — Advanced search with filters
+
+# Lexentra — Modern Document Management System
+
+![Lexentra](https://img.shields.io/badge/Lexentra-DMS-blue?style=for-the-badge)
+
+A modern, intuitive, and feature-rich Document Management System built with React, TypeScript, and Vite. Lexentra helps individuals and teams manage documents efficiently with AI-powered search, smart tagging, folder hierarchies, and access control.
+
+Badges
+
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-purple.svg)](https://vitejs.dev/)
+
+## ✨ Features
+
+- 🔍 AI-powered search across document names, descriptions, and tags
+- 📁 Folder hierarchies with nested folders and breadcrumb navigation
+- 🏷️ Smart tagging system with color-coded tags and tag-based filtering
+- 👥 Access control and sharing (Owner / Editor / Viewer roles)
+- 📄 In-app document preview for supported formats
+- 📊 Activity tracking (uploads, edits, shares, deletions)
+- ⭐ Favorites and quick access
+- 🎨 Modern, responsive UI/UX
+- 💾 Data persisted to browser `localStorage` (no backend required for demo)
+
+## 🚀 Getting Started
+
+Prerequisites
+
+- Node.js 18+ and npm
+- A modern web browser
+
+Installation
+
+1. Clone the repository:
+
+```powershell
+git clone https://github.com/yourusername/Lexentra.git
+cd Lexentra
+```
+
+2. Install dependencies:
+
+```powershell
+npm install
+```
+
+3. Start the development server:
+
+```powershell
+npm run dev
+```
+
+4. Open in your browser:
+
+Navigate to `http://localhost:5173` (or the URL shown in the terminal).
+
+### Building for production
+
+```powershell
+npm run build
+```
+
+### Preview production build
+
+```powershell
+npm run preview
+```
+
+## 🌐 Deploy to GitHub Pages
+
+1. Install `gh-pages` (dev dependency):
+
+```powershell
+npm install --save-dev gh-pages
+```
+
+2. Add a `deploy` script to `package.json` (example):
+
+```json
+{
+    "scripts": {
+        "deploy": "npm run build && gh-pages -d dist"
+    }
+}
+```
+
+3. Deploy:
+
+```powershell
+npm run deploy
+```
+
+4. Configure GitHub Pages in repository Settings → Pages and choose the `gh-pages` branch.
+
+Your site will be available at `https://yourusername.github.io/Lexentra/`.
+
+## 📚 Tech Stack
+
+- Frontend: React 18 + TypeScript 5
+- Build tool: Vite 6
+- Icons: Lucide React
+- Date handling: date-fns
+- Storage: Browser `localStorage`
+
+## 🎯 Key Components
+
+- `Sidebar` — Navigation and quick actions
+- `SearchBar` — Advanced search with filters
+- `DocumentCard` — Document display with actions
+- `DocumentPreview` — Full document preview modal
+- `ShareModal` — Document sharing interface
+- `UploadModal` — Drag-and-drop file upload
+- `FolderView` — Folder navigation and display
 
 ## 📖 Usage Guide
 
-### Uploading Documents
-1. Click "Upload" in sidebar
-2. Drag and drop file or browse
+Uploading Documents
+
+1. Click "Upload" in the sidebar
+2. Drag and drop a file or browse
 3. Add folder, description, and tags (optional)
 4. Click "Upload Document"
 
-### Creating Folders
-1. Click "New Folder" in sidebar
-2. Enter folder name
+Creating Folders
 
-### Searching Documents
-1. Use search bar at top
-2. Click filter icon for advanced options
-3. Filter by type, tags, or sort order
+1. Click "New Folder" in the sidebar
+2. Enter a folder name
 
-### Sharing Documents
-1. Click share icon on document card
+Searching Documents
+
+1. Use the search bar at the top
+2. Click the filter icon for advanced options
+3. Filter by type, tags, date range, or sort order
+
+Sharing Documents
+
+1. Click the share icon on a document card
 2. Select user and access level
-3. Click "Share" or copy link
+3. Click "Share" or copy the generated link
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome — please open a Pull Request with a clear description of your change.
 
 ## 📝 License
 
@@ -255,3 +371,4 @@ This project is licensed under the MIT License.
 ---
 
 Made with ❤️ for better document management
+
