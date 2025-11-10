@@ -8,11 +8,12 @@ interface UploadModalProps {
   tags: Tag[];
   onClose: () => void;
   onUpload: (file: File, folderId: string | null, description: string, tagIds: string[]) => void;
+  initialFolderId?: string | null;
 }
 
-export const UploadModal = ({ folders, tags, onClose, onUpload }: UploadModalProps) => {
+export const UploadModal = ({ folders, tags, onClose, onUpload, initialFolderId }: UploadModalProps) => {
   const [file, setFile] = useState<File | null>(null);
-  const [folderId, setFolderId] = useState<string | null>(null);
+  const [folderId, setFolderId] = useState<string | null>(initialFolderId || null);
   const [description, setDescription] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [dragActive, setDragActive] = useState(false);

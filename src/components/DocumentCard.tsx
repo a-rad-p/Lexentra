@@ -182,7 +182,7 @@ export const DocumentCard = ({
       {document.sharedWith.length > 0 && (
         <div className="shared-indicator">
           <Share2 size={12} />
-          <span>Shared with {document.sharedWith.length}</span>
+          <span>{document.sharedWith.length}</span>
         </div>
       )}
 

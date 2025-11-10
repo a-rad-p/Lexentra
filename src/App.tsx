@@ -160,15 +160,14 @@ function App() {
 
         <SearchBar onSearch={setSearchFilters} tags={tags} />
 
-        {activeView === 'folders' && (
-          <FolderView
-            folders={folders}
-            currentFolderId={currentFolderId}
-            onFolderClick={setCurrentFolderId}
-          />
-        )}
-
-        {activeView === 'activity' ? (
+          {activeView === 'folders' && (
+            <FolderView
+              folders={folders}
+              documents={personDocuments}
+              currentFolderId={currentFolderId}
+              onFolderClick={setCurrentFolderId}
+            />
+          )}        {activeView === 'activity' ? (
           <div className="activity-log">
             <h2>Recent Activity</h2>
             <div className="activity-list">
@@ -256,6 +255,7 @@ function App() {
           tags={tags}
           onClose={() => setShowUploadModal(false)}
           onUpload={handleUpload}
+          initialFolderId={activeView === 'folders' ? currentFolderId : null}
         />
       )}
     </div>
