@@ -1,0 +1,292 @@
+.preview-modal {
+  max-width: 1200px;
+  width: 95%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.file-icon-large {
+  font-size: 3rem;
+}
+
+.preview-header h2 {
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin: 0;
+}
+
+.file-meta {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.75rem;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.action-btn.active {
+  color: #f59e0b;
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.action-btn.delete {
+  color: #ef4444;
+}
+
+.action-btn.delete:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.preview-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.preview-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.preview-area {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.markdown-preview {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.markdown-preview pre {
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+.image-preview {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.placeholder-image {
+  text-align: center;
+  color: #64748b;
+}
+
+.placeholder-image p {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.file-preview-placeholder {
+  text-align: center;
+  color: #64748b;
+  max-width: 400px;
+}
+
+.file-preview-placeholder h3 {
+  margin: 1rem 0 0.5rem;
+  color: #475569;
+}
+
+.file-preview-placeholder p {
+  margin-bottom: 1.5rem;
+}
+
+.preview-sidebar {
+  width: 320px;
+  background: white;
+  border-left: 1px solid #e2e8f0;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-section:last-child {
+  border-bottom: none;
+}
+
+.sidebar-section h3 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detail-item {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-item > svg {
+  color: #94a3b8;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.detail-item .label {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.detail-item .value {
+  display: block;
+  font-size: 0.875rem;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags-list .tag {
+  padding: 0.35rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.empty-state {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.shared-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.shared-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shared-item .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.shared-info .name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.shared-info .access {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .preview-modal {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .preview-body {
+    flex-direction: column;
+  }
+
+  .preview-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .preview-area {
+    padding: 1rem;
+  }
+}

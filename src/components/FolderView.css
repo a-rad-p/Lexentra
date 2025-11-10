@@ -1,0 +1,138 @@
+.folder-view {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.breadcrumb-segment {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-separator {
+  color: #cbd5e1;
+  margin: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.breadcrumb-item:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.breadcrumb-item:last-child {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.folders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.folder-card {
+  background: white;
+  border: 2px solid #f1f5f9;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.folder-card:hover {
+  border-color: #e2e8f0;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.folder-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.folder-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.folder-info p {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.empty-folder {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #94a3b8;
+}
+
+.empty-folder svg {
+  margin-bottom: 1rem;
+}
+
+.empty-folder p {
+  font-size: 1.125rem;
+}
+
+@media (max-width: 640px) {
+  .breadcrumb {
+    padding: 0.75rem 1rem;
+  }
+
+  .folders-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .folder-card {
+    padding: 1rem;
+  }
+
+  .folder-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .folder-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
