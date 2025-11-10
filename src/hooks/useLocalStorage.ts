@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import type { Document, Folder, Tag, ActivityLog } from '../types';
-import { mockDocuments, mockFolders, mockTags, mockActivityLog, currentUser } from '../data/mockData';
+import type { Document, Folder, Tag, ActivityLog, User } from '../types';
+import { mockDocuments, mockFolders, mockTags, mockActivityLog, mockUsers, currentUser } from '../data/mockData';
 
 const STORAGE_KEYS = {
   DOCUMENTS: 'lexentra_documents',
   FOLDERS: 'lexentra_folders',
   TAGS: 'lexentra_tags',
   ACTIVITY: 'lexentra_activity',
+  USERS: 'lexentra_users',
 };
 
 export const useLocalStorage = () => {
@@ -14,6 +15,7 @@ export const useLocalStorage = () => {
   const [folders, setFolders] = useState<Folder[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
   const [activityLog, setActivityLog] = useState<ActivityLog[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   // Initialize from localStorage or use mock data
   useEffect(() => {
@@ -23,11 +25,13 @@ export const useLocalStorage = () => {
         const storedFolders = localStorage.getItem(STORAGE_KEYS.FOLDERS);
         const storedTags = localStorage.getItem(STORAGE_KEYS.TAGS);
         const storedActivity = localStorage.getItem(STORAGE_KEYS.ACTIVITY);
+        const storedUsers = localStorage.getItem(STORAGE_KEYS.USERS);
 
         setDocuments(storedDocs ? JSON.parse(storedDocs, dateReviver) : mockDocuments);
         setFolders(storedFolders ? JSON.parse(storedFolders, dateReviver) : mockFolders);
         setTags(storedTags ? JSON.parse(storedTags) : mockTags);
         setActivityLog(storedActivity ? JSON.parse(storedActivity, dateReviver) : mockActivityLog);
+        setUsers(storedUsers ? JSON.parse(storedUsers, dateReviver) : mockUsers);
       } catch (error) {
         console.error('Error loading from localStorage:', error);
         // Fallback to mock data
@@ -35,6 +39,7 @@ export const useLocalStorage = () => {
         setFolders(mockFolders);
         setTags(mockTags);
         setActivityLog(mockActivityLog);
+        setUsers(mockUsers);
       }
     };
 
@@ -74,13 +79,22 @@ export const useLocalStorage = () => {
     }
   }, [activityLog]);
 
-  const addDocument = (doc: Omit<Document, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'version'>) => {
+  useEffect(() => {
+    if (users.length > 0) {
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    }
+  }, [users]);
+
+  const addDocument = (
+    doc: Omit<Document, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'version'>,
+    creator?: User
+  ) => {
     const newDoc: Document = {
       ...doc,
       id: `doc-${Date.now()}`,
       createdAt: new Date(),
       updatedAt: new Date(),
-      createdBy: currentUser,
+      createdBy: creator || currentUser,
       version: 1,
     };
     setDocuments(prev => [...prev, newDoc]);
@@ -193,6 +207,7 @@ export const useLocalStorage = () => {
     setFolders(mockFolders);
     setTags(mockTags);
     setActivityLog(mockActivityLog);
+    setUsers(mockUsers);
   };
 
   return {
@@ -200,6 +215,7 @@ export const useLocalStorage = () => {
     folders,
     tags,
     activityLog,
+    users,
     addDocument,
     updateDocument,
     deleteDocument,

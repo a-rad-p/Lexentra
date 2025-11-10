@@ -1,12 +1,16 @@
 import type { User, Tag, Document, Folder, ActivityLog } from '../types';
 
-// Mock Users
+// Mock Users (Bank Customers)
 export const currentUser: User = {
   id: 'user-1',
   name: 'John Doe',
-  email: 'john.doe@lexentra.com',
+  email: 'john.doe@email.com',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
   role: 'admin',
+  department: 'Premium Banking',
+  title: 'Premium Account Holder',
+  status: 'online',
+  lastActive: new Date(),
 };
 
 export const mockUsers: User[] = [
@@ -14,23 +18,35 @@ export const mockUsers: User[] = [
   {
     id: 'user-2',
     name: 'Jane Smith',
-    email: 'jane.smith@lexentra.com',
+    email: 'jane.smith@email.com',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jane',
     role: 'user',
+    department: 'Business Banking',
+    title: 'Business Account Holder',
+    status: 'online',
+    lastActive: new Date(Date.now() - 15 * 60000), // 15 mins ago
   },
   {
     id: 'user-3',
     name: 'Mike Johnson',
-    email: 'mike.johnson@lexentra.com',
+    email: 'mike.johnson@email.com',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Mike',
     role: 'user',
+    department: 'Personal Banking',
+    title: 'Personal Account Holder',
+    status: 'away',
+    lastActive: new Date(Date.now() - 2 * 60 * 60000), // 2 hours ago
   },
   {
     id: 'user-4',
     name: 'Sarah Williams',
-    email: 'sarah.williams@lexentra.com',
+    email: 'sarah.williams@email.com',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
     role: 'guest',
+    department: 'Mortgage Services',
+    title: 'Mortgage Account Holder',
+    status: 'offline',
+    lastActive: new Date(Date.now() - 24 * 60 * 60000), // 1 day ago
   },
 ];
 

@@ -6,9 +6,10 @@ import { DocumentPreview } from './components/DocumentPreview';
 import { ShareModal } from './components/ShareModal';
 import { UploadModal } from './components/UploadModal';
 import { FolderView } from './components/FolderView';
+import { PersonSelector } from './components/PersonSelector';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { searchDocuments, fileToBase64 } from './utils/helpers';
-import type { Document, SearchFilters, AccessLevel } from './types';
+import type { Document, SearchFilters, AccessLevel, User } from './types';
 import './App.css';
 
 function App() {
@@ -17,12 +18,14 @@ function App() {
     folders,
     tags,
     activityLog,
+    users,
     addDocument,
     updateDocument,
     deleteDocument,
     addFolder,
   } = useLocalStorage();
 
+  const [selectedPerson, setSelectedPerson] = useState<User | null>(null);
   const [activeView, setActiveView] = useState('home');
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({ query: '', sortBy: 'date', sortOrder: 'desc' });
   const [previewDocument, setPreviewDocument] = useState<Document | null>(null);
@@ -30,7 +33,23 @@ function App() {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
 
-  const filteredDocuments = searchDocuments(documents, {
+  // If no person is selected, show person selector
+  if (!selectedPerson) {
+    return (
+      <div className="app">
+        <PersonSelector
+          users={users}
+          selectedUser={selectedPerson}
+          onSelectUser={setSelectedPerson}
+        />
+      </div>
+    );
+  }
+
+  // Filter documents by selected person
+  const personDocuments = documents.filter(doc => doc.createdBy.id === selectedPerson.id);
+  
+  const filteredDocuments = searchDocuments(personDocuments, {
     ...searchFilters,
     folderId: activeView === 'folders' ? currentFolderId : undefined,
   });
@@ -75,6 +94,7 @@ function App() {
       console.error('Error converting file to base64:', error);
     }
     
+    // Add document with selected person as creator
     addDocument({
       name: file.name,
       type: fileType as any,
@@ -84,9 +104,9 @@ function App() {
       description,
       sharedWith: [],
       isFavorite: false,
-      content: fileContent, // Store the base64 content
-      url: fileContent, // Also use as URL for preview
-    });
+      content: fileContent,
+      url: fileContent,
+    }, selectedPerson);
     
     setShowUploadModal(false);
   };
@@ -114,10 +134,28 @@ function App() {
       
       <main className="main-content">
         <div className="content-header">
-          <h1>{activeView === 'home' ? 'All Documents' : activeView.charAt(0).toUpperCase() + activeView.slice(1)}</h1>
-          <p className="subtitle">
-            {displayDocuments().length} document{displayDocuments().length !== 1 ? 's' : ''} found
-          </p>
+          <div className="header-person-info">
+            <div className="person-avatar-small">
+              {selectedPerson.avatar ? (
+                <img src={selectedPerson.avatar} alt={selectedPerson.name} />
+              ) : (
+                <div className="avatar-placeholder-small">
+                  {selectedPerson.name.split(' ').map(n => n[0]).join('')}
+                </div>
+              )}
+            </div>
+            <div>
+              <h1>{selectedPerson.name}'s Documents</h1>
+              <p className="subtitle">
+                {selectedPerson.title && `${selectedPerson.title} • `}
+                {displayDocuments().length} document{displayDocuments().length !== 1 ? 's' : ''}
+                {' • '}
+                <button className="change-person-btn" onClick={() => setSelectedPerson(null)}>
+                  Change Customer
+                </button>
+              </p>
+            </div>
+          </div>
         </div>
 
         <SearchBar onSearch={setSearchFilters} tags={tags} />

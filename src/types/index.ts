@@ -8,6 +8,10 @@ export interface User {
   email: string;
   avatar?: string;
   role: 'admin' | 'user' | 'guest';
+  department?: string;
+  title?: string;
+  status?: 'online' | 'offline' | 'away';
+  lastActive?: Date;
 }
 
 export interface Tag {
