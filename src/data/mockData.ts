@@ -68,7 +68,7 @@ export const mockTags: Tag[] = [
 export const mockFolders: Folder[] = [
   {
     id: 'folder-1',
-    name: 'Tax Returns',
+    name: 'Personal Tax Documents',
     parentId: null,
     createdAt: new Date('2024-01-15'),
     updatedAt: new Date('2024-11-05'),
@@ -88,7 +88,7 @@ export const mockFolders: Folder[] = [
   },
   {
     id: 'folder-3',
-    name: 'Loan Applications',
+    name: 'Loans & Credit',
     parentId: null,
     createdAt: new Date('2024-01-10'),
     updatedAt: new Date('2024-10-15'),
@@ -98,7 +98,7 @@ export const mockFolders: Folder[] = [
   },
   {
     id: 'folder-4',
-    name: 'Home Mortgage',
+    name: 'Mortgage',
     parentId: 'folder-3',
     createdAt: new Date('2024-03-01'),
     updatedAt: new Date('2024-10-20'),
@@ -108,7 +108,7 @@ export const mockFolders: Folder[] = [
   },
   {
     id: 'folder-5',
-    name: 'Bank Statements',
+    name: 'Account Statements',
     parentId: null,
     createdAt: new Date('2024-01-05'),
     updatedAt: new Date('2024-11-01'),
@@ -128,7 +128,7 @@ export const mockFolders: Folder[] = [
   },
   {
     id: 'folder-7',
-    name: 'Insurance Documents',
+    name: 'Insurance & Protection',
     parentId: null,
     createdAt: new Date('2024-02-01'),
     updatedAt: new Date('2024-11-09'),
